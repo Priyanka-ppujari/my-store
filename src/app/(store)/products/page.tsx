@@ -12,9 +12,15 @@ export default function ProductsPage() {
   const [activeCategory, setActiveCategory] = useState('All')
   const [sortBy, setSortBy] = useState('featured')
 
-  const { data: products = [], isLoading } = trpc.product.getAll.useQuery()
+  const { data: rawProducts = [], isLoading } = trpc.product.getAll.useQuery()
 
   const filtered = useMemo(() => {
+    // Normalize createdAt from string → Date (JSON serialization strips Date type)
+    const products = rawProducts.map((p) => ({
+      ...p,
+      createdAt: new Date(p.createdAt),
+    }))
+
     let result = activeCategory === 'All'
       ? products
       : products.filter((p) => p.category === activeCategory)
@@ -24,7 +30,7 @@ export default function ProductsPage() {
     else if (sortBy === 'rating') result = [...result].sort((a, b) => b.rating - a.rating)
 
     return result
-  }, [products, activeCategory, sortBy])
+  }, [rawProducts, activeCategory, sortBy])
 
   if (isLoading) {
     return (
@@ -131,7 +137,7 @@ export default function ProductsPage() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1], delay: i * 0.04 }}
               >
-                <ProductCard product ={product} index={i} />
+                <ProductCard product={product} index={i} />
               </motion.div>
             ))}
           </AnimatePresence>

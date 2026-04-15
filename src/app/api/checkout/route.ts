@@ -2,16 +2,23 @@ import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { auth } from '@/server/auth'
 
+type CartItem = {
+  name: string
+  image: string
+  price: number
+  quantity: number
+}
+
 export async function POST(req: NextRequest) {
   try {
     const session = await auth()
-    const { items } = await req.json()
+    const { items } = await req.json() as { items: CartItem[] }
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'No items' }, { status: 400 })
     }
 
-    const lineItems = items.map((item: any) => ({
+    const lineItems = items.map((item: CartItem) => ({
       price_data: {
         currency: 'usd',
         product_data: {

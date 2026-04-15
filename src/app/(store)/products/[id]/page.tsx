@@ -43,10 +43,13 @@ export default function ProductPage() {
   }
 
   const handleAddToCart = () => {
-    addItem(product)
-    setAdded(true)
-    setTimeout(() => setAdded(false), 1500)
-  }
+  addItem({
+    ...product,
+    createdAt: new Date(product.createdAt)
+  })
+  setAdded(true)
+  setTimeout(() => setAdded(false), 1500)
+}
 
   return (
     <main className="min-h-screen bg-[#080808] pt-28 pb-20">

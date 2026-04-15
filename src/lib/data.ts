@@ -14,6 +14,8 @@ export const products: Product[] = [
     badge: 'Sale',
     colors: ['#1a1a1a', '#8B4513', '#2C3E50'],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    stock: 12,
+    createdAt: new Date('2024-01-01'),
   },
   {
     id: '2',
@@ -26,6 +28,8 @@ export const products: Product[] = [
     reviews: 64,
     badge: 'Limited',
     colors: ['#D4A853', '#C0C0C0', '#1a1a1a'],
+    stock: 5,
+    createdAt: new Date('2024-01-15'),
   },
   {
     id: '3',
@@ -38,6 +42,8 @@ export const products: Product[] = [
     reviews: 213,
     badge: 'Hot',
     sizes: ['38', '39', '40', '41', '42', '43', '44'],
+    stock: 20,
+    createdAt: new Date('2024-02-01'),
   },
   {
     id: '4',
@@ -51,6 +57,8 @@ export const products: Product[] = [
     badge: 'New',
     colors: ['#F5F5DC', '#1a1a1a', '#8B8682', '#2C3E50'],
     sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'],
+    stock: 18,
+    createdAt: new Date('2024-02-15'),
   },
   {
     id: '5',
@@ -62,6 +70,8 @@ export const products: Product[] = [
     rating: 4.9,
     reviews: 156,
     colors: ['#1a1a1a', '#D4A853', '#8B4513'],
+    stock: 9,
+    createdAt: new Date('2024-03-01'),
   },
   {
     id: '6',
@@ -73,6 +83,8 @@ export const products: Product[] = [
     rating: 4.6,
     reviews: 47,
     badge: 'New',
+    stock: 30,
+    createdAt: new Date('2024-03-15'),
   },
   {
     id: '7',
@@ -87,6 +99,8 @@ export const products: Product[] = [
     badge: 'Sale',
     colors: ['#36454F', '#1a1a1a', '#8B8682'],
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    stock: 7,
+    createdAt: new Date('2024-04-01'),
   },
   {
     id: '8',
@@ -100,6 +114,8 @@ export const products: Product[] = [
     badge: 'Hot',
     colors: ['#FFFFFF', '#1a1a1a', '#F5F5DC'],
     sizes: ['38', '39', '40', '41', '42', '43', '44', '45'],
+    stock: 25,
+    createdAt: new Date('2024-04-15'),
   },
 ]
 

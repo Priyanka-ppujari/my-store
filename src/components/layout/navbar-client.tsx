@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -15,15 +15,20 @@ interface NavbarClientProps {
   } | null
 }
 
+// Returns false on server, true on client — no useEffect or setState needed
+function subscribe() { return () => {} }
+function useIsMounted() {
+  return useSyncExternalStore(subscribe, () => true, () => false)
+}
+
 export default function NavbarClient({ user }: NavbarClientProps) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
+  const mounted = useIsMounted()
   const { count, toggleCart } = useCart()
   const cartCount = count()
 
   useEffect(() => {
-    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
